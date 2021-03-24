@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
  *
  * @author alberto
  */
-public class PanelPrincipal extends JPanel {
+public class PanelPrincipal extends JPanel implements ActionListener {
 
     // Atributos de la clase (privados)
     private PanelBotones botonera;
@@ -45,5 +45,23 @@ public class PanelPrincipal extends JPanel {
         this.add(areaTexto, BorderLayout.NORTH);
         this.add(botonera, BorderLayout.SOUTH);
 
+        for (JButton boton : this.botonera.getgrupoBotones()) {
+            boton.addActionListener(this);
+        }
+
     }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+
+        // Se obtiene el objeto que desencadena el evento
+        Object o = ae.getSource();
+        // Si es un botón
+        if (o instanceof JButton) {
+            System.out.println(((JButton) o).getText());
+            areaTexto.setText(((JButton) o).getText());
+
+        }
+    }
+
 }
